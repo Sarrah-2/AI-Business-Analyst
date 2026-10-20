@@ -9,6 +9,7 @@ The application uses Google Gemini to help generate SQL queries and
 explain query results. Uploaded datasets are inspected to build a schema
 description, helping the model work with the tables and columns that are
 actually available.
+
 💡 Why this project?
 Answering business questions often requires a person to understand the
 data, write SQL, run the query, and interpret the output. This project
@@ -23,7 +24,9 @@ Questions are only answerable when the uploaded data contains the
 necessary fields. For example, a customer-review file containing only
 review dates, product IDs, ratings, and review text cannot provide
 revenue figures unless the required sales information is also available.
+
 ✨ Features
+
   Feature                             Description
   📂 CSV and Excel upload             Load structured datasets for
                                       analysis.
@@ -53,13 +56,14 @@ revenue figures unless the required sales information is also available.
                                       its results.
 
   🧭 Explore mode                     Preview tables and request a
-                                      plain-English overview.
+                                       plain-English overview.
 
   🕘 Query history                    Revisit previously asked questions
-                                  during the session.
+                                       during the session.
 Features depend on the current code and should be tested in your local
 environment. Chart selection is currently basic and may need further
 improvement for different result shapes.
+
 🧠 How it works
 User uploads a CSV or Excel file
               |
@@ -83,10 +87,12 @@ User uploads a CSV or Excel file
               |
               v
   Show results, chart, and AI insight
+
 For unsupported questions, the application is designed to explain when
 the available schema does not contain the information needed to answer.
 For example, it should not calculate revenue from a reviews-only dataset
 with no revenue, price, or quantity fields.
+
 🛠️ Technology stack
   Component       Technology
   Language        Python
@@ -96,11 +102,14 @@ with no revenue, price, or quantity fields.
   Data handling   pandas
   Charts          matplotlib
   Configuration   python-dotenv
+
 🚀 Getting started
+
 1. Clone your repository
 Replace the placeholder with your GitHub repository URL.
 git clone <YOUR_GITHUB_REPOSITORY_URL>
 cd <YOUR_PROJECT_FOLDER>
+
 2. Create and activate a virtual environment
 Windows
 python -m venv venv
@@ -108,6 +117,7 @@ venv\Scripts\activate
 macOS / Linux
 python -m venv venv
 source venv/bin/activate
+
 3. Install dependencies
 If your repository contains requirements.txt, run:
 pip install -r requirements.txt
@@ -116,6 +126,7 @@ project include:
 pip install streamlit pandas matplotlib python-dotenv google-generativeai openpyxl
 For legacy .xls Excel files, you may also need:
 pip install xlrd
+
 4. Configure Gemini
 Create a .env file in the project root:
 GEMINI_API_KEY=your_gemini_api_key
@@ -125,26 +136,32 @@ configured in agent.py is currently supported by your API key.
 
 Security: Never commit your .env file or API key to GitHub. Add
 .env to .gitignore.
+
 5. Run the app
 streamlit run app.py
 If the app relies on the built-in demo database, ensure that
 create_database.py is present and correctly initializes store.db.
+
 🧪 Try it with a sample dataset
 You can test the app with a CSV containing customer reviews, for
 example:
+
 review_id,review_date,product_id,rating_1_to_5,review_text
 1,2026-01-04,P001,5,"Leaves my skin soft and hydrated."
 2,2026-01-09,P002,2,"The shampoo made my hair feel dry."
 3,2026-01-15,P003,4,"Absorbs quickly and feels lightweight."
+
 Try questions such as:
 1. "What is the average rating?"
 2. "Show the reviews with ratings below 3."
 3. "Which product IDs have the lowest average ratings?"
 4. "Find the revenue."
+
 For the last question, a reviews-only dataset should produce a message
 explaining that revenue data is missing. To analyze revenue, upload a
 dataset with revenue directly or with fields such as price and quantity,
 plus region if you want revenue by region.
+
 🔐 Reliability and data safety
 - Use only data you are permitted to upload and process.
 - Avoid uploading sensitive customer or company data unless your
@@ -159,6 +176,7 @@ plus region if you want revenue by region.
   accuracy.
 - Synthetic demo data is for testing and should not be described as
   real company data.
+
 🔭 Possible future improvements
 - More reliable chart selection based on query intent and result types
 - A benchmark of natural-language questions with expected SQL and
@@ -169,6 +187,7 @@ plus region if you want revenue by region.
   sentiment
 - Downloadable reports with charts and executive summaries
 - Automated data-quality checks and clearer error diagnostics
+
 📁 Suggested project structure
 ai-business-analyst/
 ├── app.py
@@ -183,11 +202,12 @@ This is an example structure. Include only files that actually exist in
 your repository. Avoid committing real credentials or sensitive data;
 decide whether to include store.db based on whether it contains safe
 sample data.
+
 👩‍💻 About
 AI Business Analyst is a portfolio project exploring how large language
 models can connect natural-language questions with SQL-based analysis
 and business reporting.
 
-Author: <YOUR_NAME>
+Author: <Sarrah Sadriwala>
 
 GitHub: <YOUR_GITHUB_REPOSITORY_URL>
